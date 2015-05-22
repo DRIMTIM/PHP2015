@@ -66,6 +66,7 @@ Class userController Extends baseController {
 	
 	public function modificarDatos(){
 		$this->usuarioModel->updateUsuario($this->usuario[0]["id"]);
+		$_SESSION["_usuario"] = $this->usuarioModel->obtenerUsuario($this->usuario[0]["nick"]);
 		$this->index();
 	}
 	
