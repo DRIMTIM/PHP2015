@@ -1,0 +1,36 @@
+body{
+	text-align: center;
+}
+header{
+	text-align: left;
+	height: 10%;
+}
+aside, section{
+	float: left;
+}
+aside{
+	width: 20%;
+	max-width: 20%;
+	min-width: 20%;
+}
+section{
+	width: 50%;
+}
+footer{
+	clear: both;
+	background: aqua;
+}
+.logo{
+	width: 10%;
+	height: 10%;
+	margin: 10pt;
+	padding: 10pt;
+}
+.panel{
+	margin-bottom: 0%;
+}
+aside.right{
+	width: 30%;
+	max-width: 30%;
+	min-width: 30%;
+}
