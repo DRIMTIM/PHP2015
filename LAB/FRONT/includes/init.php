@@ -24,7 +24,7 @@ define ( '__ROOT_IMG', __ROOT . '/application/public/images/');
 /**
  * * include the controller class **
  */
-include __SITE_PATH . '/application/controller_base.class.php';
+include __SITE_PATH . '/application/BaseController.class.php';
 
 include __SITE_PATH . '/application/Validator.class.php';
 
@@ -33,17 +33,17 @@ include __SITE_PATH . '/application/AbstractModel.class.php';
 /**
  * * include the registry class **
  */
-include __SITE_PATH . '/application/registry.class.php';
+include __SITE_PATH . '/application/Registry.class.php';
 
 /**
  * * include the router class **
  */
-include __SITE_PATH . '/application/router.class.php';
+include __SITE_PATH . '/application/Router.class.php';
 
 /**
  * * include the template class **
  */
-include __SITE_PATH . '/application/template.class.php';
+include __SITE_PATH . '/application/Template.class.php';
 
 include __SITE_PATH . '/application/GenericUtils.class.php';
 
@@ -51,7 +51,7 @@ include __SITE_PATH . '/application/GenericUtils.class.php';
  * * auto load model classes **
  */
 function __autoload($class_name) {
-	$filename = strtolower ( $class_name ) . '.class.php';
+	$filename = $class_name . '.class.php';
 	$file = __SITE_PATH . '/models/' . $filename;
 	
 	if (file_exists ( $file ) == false) {

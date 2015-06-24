@@ -1,7 +1,7 @@
 <?php
-class userModel extends AbstractModel{
+class UserModel extends AbstractModel{
     
-	protected $table_name = "usuarios";
+	protected $table_name = "USUARIOS";
 	protected $id = NULL;
 	protected $nick = NULL;
 	protected $nombre = NULL;
@@ -16,7 +16,7 @@ class userModel extends AbstractModel{
     protected $modificarPassword = false;
     
     public function getUsuarios(){
-		$usuarios = $this->registry->db->get('usuarios');
+		$usuarios = $this->registry->db->get($this->table_name);
 		return $usuarios;
 	}	
         
@@ -34,11 +34,11 @@ class userModel extends AbstractModel{
 	}
 	
 	public function borrar($idUsuario){
-		return $this->registry->db->where("id_usuario", $idUsuario)->delete($this->table_name, 1);
+		return $this->registry->db->where("id", $idUsuario)->delete($this->table_name, 1);
 	}
 
 	public function obtenerUsuario($nick){
-		$usuario = $this->registry->db->where("nick", $nick)->get('usuarios');
+		$usuario = $this->registry->db->where("nick", $nick)->get($this->table_name);
 		if(count($usuario) > 0){
 			//Formateo la fecha nac de salida
 			$usuario[0]["fechaNac"] = GenericUtils::getInstance()->getFormatDateOut($usuario[0]["fechaNac"]);
@@ -55,7 +55,7 @@ class userModel extends AbstractModel{
 		unset($data["modificarPassword"]);
 		//Formateo la fecha de nacimiento al formato de sql
 		$data["fechaNac"] = GenericUtils::getInstance()->getFormatDateIn($data["fechaNac"]);
-		return $this->registry->db->where("id_usuario", $idUsuario)->update('usuarios', $data);
+		return $this->registry->db->where("id", $idUsuario)->update($this->table_name, $data);
 	}
 }
 ?>

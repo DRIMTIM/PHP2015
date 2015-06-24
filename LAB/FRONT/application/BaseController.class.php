@@ -1,14 +1,18 @@
 <?php
 
-Abstract Class baseController {
+Abstract Class BaseController {
 
 /*
  * @registry object
  */
 protected $registry;
+protected $usuario;
 
 function __construct($registry) {
 	$this->registry = $registry;
+	if($_SESSION[__USER]!== null){
+		$this->usuario = $_SESSION[__USER];
+	}
 	$this->onConstruct();
 }
 

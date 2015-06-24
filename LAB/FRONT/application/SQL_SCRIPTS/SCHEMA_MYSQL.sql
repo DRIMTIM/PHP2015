@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-06-2015 a las 00:39:24
+-- Tiempo de generación: 23-06-2015 a las 22:35:15
 -- Versión del servidor: 5.5.43-0+deb8u1
 -- Versión de PHP: 5.6.9-0+deb8u1
 
@@ -23,11 +23,11 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `administradores`
+-- Estructura de tabla para la tabla `ADMINISTRADORES`
 --
 
-CREATE TABLE IF NOT EXISTS `administradores` (
-`id_administrador` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `ADMINISTRADORES` (
+`id` bigint(20) NOT NULL,
   `apellido` varchar(30) NOT NULL,
   `email` varchar(30) NOT NULL,
   `nick` varchar(30) NOT NULL,
@@ -38,22 +38,22 @@ CREATE TABLE IF NOT EXISTS `administradores` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias`
+-- Estructura de tabla para la tabla `CATEGORIAS`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias` (
-`id_categoria` bigint(20) NOT NULL,
-  `nombre_categoria` varchar(40) NOT NULL,
+CREATE TABLE IF NOT EXISTS `CATEGORIAS` (
+`id` bigint(20) NOT NULL,
+  `nombre` varchar(40) NOT NULL,
   `descripcion` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `categorias_de_ofertas`
+-- Estructura de tabla para la tabla `CATEGORIAS_OFERTAS`
 --
 
-CREATE TABLE IF NOT EXISTS `categorias_de_ofertas` (
+CREATE TABLE IF NOT EXISTS `CATEGORIAS_OFERTAS` (
   `id_categoria` bigint(20) NOT NULL,
   `id_oferta` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -61,10 +61,10 @@ CREATE TABLE IF NOT EXISTS `categorias_de_ofertas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `compras`
+-- Estructura de tabla para la tabla `COMPRAS`
 --
 
-CREATE TABLE IF NOT EXISTS `compras` (
+CREATE TABLE IF NOT EXISTS `COMPRAS` (
 `id_compra` bigint(20) NOT NULL,
   `id_oferta` bigint(20) NOT NULL,
   `id_usuario` bigint(20) NOT NULL
@@ -73,12 +73,12 @@ CREATE TABLE IF NOT EXISTS `compras` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ofertas`
+-- Estructura de tabla para la tabla `OFERTAS`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas` (
-`id_oferta` bigint(20) NOT NULL,
-  `titulo_oferta` varchar(40) NOT NULL,
+CREATE TABLE IF NOT EXISTS `OFERTAS` (
+`id` bigint(20) NOT NULL,
+  `titulo` varchar(40) NOT NULL,
   `imagen` varchar(100) DEFAULT NULL,
   `descripcion` varchar(200) DEFAULT NULL,
   `descripcion_corta` varchar(80) DEFAULT NULL,
@@ -88,22 +88,22 @@ CREATE TABLE IF NOT EXISTS `ofertas` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ofertas_hasta_agotar_stock`
+-- Estructura de tabla para la tabla `OFERTAS_STOCK`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas_hasta_agotar_stock` (
-  `id_oferta` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `OFERTAS_STOCK` (
+  `id` bigint(20) NOT NULL,
   `stock` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `ofertas_temporales`
+-- Estructura de tabla para la tabla `OFERTAS_TEMPORALES`
 --
 
-CREATE TABLE IF NOT EXISTS `ofertas_temporales` (
-  `id_oferta` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `OFERTAS_TEMPORALES` (
+  `id` bigint(20) NOT NULL,
   `fecha_fin` datetime NOT NULL,
   `fecha_inicio` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -111,11 +111,11 @@ CREATE TABLE IF NOT EXISTS `ofertas_temporales` (
 -- --------------------------------------------------------
 
 --
--- Estructura de tabla para la tabla `usuarios`
+-- Estructura de tabla para la tabla `USUARIOS`
 --
 
-CREATE TABLE IF NOT EXISTS `usuarios` (
-`id_usuario` bigint(20) NOT NULL,
+CREATE TABLE IF NOT EXISTS `USUARIOS` (
+`id` bigint(20) NOT NULL,
   `nick` varchar(100) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
@@ -124,118 +124,118 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `celular` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
   `edad` int(100) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Índices para tablas volcadas
 --
 
 --
--- Indices de la tabla `administradores`
+-- Indices de la tabla `ADMINISTRADORES`
 --
-ALTER TABLE `administradores`
- ADD PRIMARY KEY (`id_administrador`), ADD UNIQUE KEY `email` (`email`);
+ALTER TABLE `ADMINISTRADORES`
+ ADD PRIMARY KEY (`id`), ADD UNIQUE KEY `email` (`email`);
 
 --
--- Indices de la tabla `categorias`
+-- Indices de la tabla `CATEGORIAS`
 --
-ALTER TABLE `categorias`
- ADD PRIMARY KEY (`id_categoria`);
+ALTER TABLE `CATEGORIAS`
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `categorias_de_ofertas`
+-- Indices de la tabla `CATEGORIAS_OFERTAS`
 --
-ALTER TABLE `categorias_de_ofertas`
+ALTER TABLE `CATEGORIAS_OFERTAS`
  ADD PRIMARY KEY (`id_categoria`,`id_oferta`), ADD KEY `id_oferta` (`id_oferta`);
 
 --
--- Indices de la tabla `compras`
+-- Indices de la tabla `COMPRAS`
 --
-ALTER TABLE `compras`
+ALTER TABLE `COMPRAS`
  ADD PRIMARY KEY (`id_compra`), ADD KEY `id_oferta` (`id_oferta`), ADD KEY `id_usuario` (`id_usuario`);
 
 --
--- Indices de la tabla `ofertas`
+-- Indices de la tabla `OFERTAS`
 --
-ALTER TABLE `ofertas`
- ADD PRIMARY KEY (`id_oferta`);
+ALTER TABLE `OFERTAS`
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ofertas_hasta_agotar_stock`
+-- Indices de la tabla `OFERTAS_STOCK`
 --
-ALTER TABLE `ofertas_hasta_agotar_stock`
- ADD PRIMARY KEY (`id_oferta`);
+ALTER TABLE `OFERTAS_STOCK`
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `ofertas_temporales`
+-- Indices de la tabla `OFERTAS_TEMPORALES`
 --
-ALTER TABLE `ofertas_temporales`
- ADD PRIMARY KEY (`id_oferta`);
+ALTER TABLE `OFERTAS_TEMPORALES`
+ ADD PRIMARY KEY (`id`);
 
 --
--- Indices de la tabla `usuarios`
+-- Indices de la tabla `USUARIOS`
 --
-ALTER TABLE `usuarios`
- ADD PRIMARY KEY (`id_usuario`);
+ALTER TABLE `USUARIOS`
+ ADD PRIMARY KEY (`id`);
 
 --
 -- AUTO_INCREMENT de las tablas volcadas
 --
 
 --
--- AUTO_INCREMENT de la tabla `administradores`
+-- AUTO_INCREMENT de la tabla `ADMINISTRADORES`
 --
-ALTER TABLE `administradores`
-MODIFY `id_administrador` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `ADMINISTRADORES`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `categorias`
+-- AUTO_INCREMENT de la tabla `CATEGORIAS`
 --
-ALTER TABLE `categorias`
-MODIFY `id_categoria` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `CATEGORIAS`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `compras`
+-- AUTO_INCREMENT de la tabla `COMPRAS`
 --
-ALTER TABLE `compras`
+ALTER TABLE `COMPRAS`
 MODIFY `id_compra` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `ofertas`
+-- AUTO_INCREMENT de la tabla `OFERTAS`
 --
-ALTER TABLE `ofertas`
-MODIFY `id_oferta` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `OFERTAS`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT de la tabla `usuarios`
+-- AUTO_INCREMENT de la tabla `USUARIOS`
 --
-ALTER TABLE `usuarios`
-MODIFY `id_usuario` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
+ALTER TABLE `USUARIOS`
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 --
 -- Restricciones para tablas volcadas
 --
 
 --
--- Filtros para la tabla `categorias_de_ofertas`
+-- Filtros para la tabla `CATEGORIAS_OFERTAS`
 --
-ALTER TABLE `categorias_de_ofertas`
-ADD CONSTRAINT `categorias_de_ofertas_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `categorias` (`id_categoria`) ON DELETE CASCADE,
-ADD CONSTRAINT `categorias_de_ofertas_ibfk_2` FOREIGN KEY (`id_oferta`) REFERENCES `ofertas` (`id_oferta`) ON DELETE CASCADE;
+ALTER TABLE `CATEGORIAS_OFERTAS`
+ADD CONSTRAINT `CATEGORIAS_OFERTAS_ibfk_1` FOREIGN KEY (`id_categoria`) REFERENCES `CATEGORIAS` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `CATEGORIAS_OFERTAS_ibfk_2` FOREIGN KEY (`id_oferta`) REFERENCES `OFERTAS` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `compras`
+-- Filtros para la tabla `COMPRAS`
 --
-ALTER TABLE `compras`
-ADD CONSTRAINT `compras_ibfk_1` FOREIGN KEY (`id_oferta`) REFERENCES `ofertas` (`id_oferta`) ON DELETE CASCADE,
-ADD CONSTRAINT `compras_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id_usuario`) ON DELETE CASCADE;
+ALTER TABLE `COMPRAS`
+ADD CONSTRAINT `COMPRAS_ibfk_1` FOREIGN KEY (`id_oferta`) REFERENCES `OFERTAS` (`id`) ON DELETE CASCADE,
+ADD CONSTRAINT `COMPRAS_ibfk_2` FOREIGN KEY (`id_usuario`) REFERENCES `USUARIOS` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `ofertas_hasta_agotar_stock`
+-- Filtros para la tabla `OFERTAS_STOCK`
 --
-ALTER TABLE `ofertas_hasta_agotar_stock`
-ADD CONSTRAINT `ofertas_hasta_agotar_stock_ibfk_1` FOREIGN KEY (`id_oferta`) REFERENCES `ofertas` (`id_oferta`) ON DELETE CASCADE;
+ALTER TABLE `OFERTAS_STOCK`
+ADD CONSTRAINT `OFERTAS_STOCK_ibfk_1` FOREIGN KEY (`id`) REFERENCES `OFERTAS` (`id`) ON DELETE CASCADE;
 
 --
--- Filtros para la tabla `ofertas_temporales`
+-- Filtros para la tabla `OFERTAS_TEMPORALES`
 --
-ALTER TABLE `ofertas_temporales`
-ADD CONSTRAINT `ofertas_temporales_ibfk_1` FOREIGN KEY (`id_oferta`) REFERENCES `ofertas` (`id_oferta`) ON DELETE CASCADE;
+ALTER TABLE `OFERTAS_TEMPORALES`
+ADD CONSTRAINT `OFERTAS_TEMPORALES_ibfk_1` FOREIGN KEY (`id`) REFERENCES `OFERTAS` (`id`) ON DELETE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

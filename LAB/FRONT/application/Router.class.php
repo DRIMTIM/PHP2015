@@ -1,6 +1,6 @@
 <?php
 
-class router {
+class Router {
  /*
  * @the registry
  */
@@ -172,6 +172,9 @@ private function getController() {
 		$this->actionValidator = null;
 	}
 
+	/** cambio a camel case para la nomenclatura**/
+	$this->controller = ucfirst($this->controller);
+	
 	/*** set the validator file path ***/
 	$this->validatorFile = $this->path .'/validators/'. $this->controller . 'Validator.php';
 	

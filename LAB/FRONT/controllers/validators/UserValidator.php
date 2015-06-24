@@ -1,12 +1,12 @@
 <?php
 
-Class userValidator extends validator {
+Class UserValidator extends validator {
 
 	private $usuarioModel = NULL;
 	private $usuario = NULL;
 	
 	public function onConstruct(){
-		$this->usuarioModel = new userModel($this->registry);
+		$this->usuarioModel = new UserModel($this->registry);
 		if($_SESSION[__USER]!== null){
 			$this->usuario = $_SESSION[__USER];
 		}
