@@ -47,6 +47,10 @@ function redirect($url, $code = 302)
     }
 }
 
+function getOKMessage($response){
+	return GlobalConstants::$OK . GlobalConstants::$SPACE . GlobalConstants::$COLON . GlobalConstants::$SPACE . $response;
+}
+
 }
 
 ?>

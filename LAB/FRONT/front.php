@@ -1,9 +1,3 @@
-<?php
-
-session_start ();
-
-?>
-
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -18,7 +12,9 @@ session_start ();
 <link href="<?php echo __ROOT_CSS . 'animate.css'?>" rel="stylesheet">
 <link href="<?php echo __ROOT_CSS . 'main.css'?>" rel="stylesheet">
 <link href="<?php echo __ROOT_CSS . 'responsive.css'?>" rel="stylesheet">
+<link href="<?php echo __ROOT_CSS . 'jquery-ui-timepicker-addon.css'?>" rel="stylesheet">
 <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+<link href="<?php echo __ROOT_CSS . 'jquery.mCustomScrollbar.css'?>" rel="stylesheet">
 <link rel="shortcut icon" href="<?php echo __ROOT_IMG . 'ico/favicon.ico'?>">
 <style type="text/css">
 	.search_box input {
@@ -49,9 +45,12 @@ session_start ();
 <script src="<?php echo __ROOT_JS . 'jquery.prettyPhoto.js'?>"></script>
 <script src="<?php echo __ROOT_JS . 'main.js'?>"></script>
 <script src="<?php echo __ROOT_JS . 'jquery.easyModal.js'?>"></script>
-<script src="<?php echo __ROOT_JS . 'jquery.mCustomScrollbar.concat.min.js'?>"></script>
+<script src="<?php echo __ROOT_JS . 'jquery.mCustomScrollbar.js'?>"></script>
 <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
-<title>Inicio | E-Shopper</title>
+<script src="<?php echo __ROOT_JS . 'jquery-ui-timepicker-addon.js'?>"></script>
+<script src="<?php echo __ROOT_JS . 'utils.js'?>"></script>
+<script src="<?php echo __ROOT_JS . 'jquery.countdown.js'?>"></script>
+<title>Inicio | DT-Market</title>
 </head>
 <body>	
 	<header id="header"><!--header-->
@@ -61,8 +60,7 @@ session_start ();
 					<div class="col-sm-6">
 						<div class="contactinfo">
 							<ul class="nav nav-pills">
-								<li><a href="#"><i class="fa fa-phone"></i> +2 95 01 88 821</a></li>
-								<li><a href="#"><i class="fa fa-envelope"></i> info@domain.com</a></li>
+								<li><h6>DrimTim Develop Team</h6></li>
 							</ul>
 						</div>
 					</div>
@@ -86,29 +84,6 @@ session_start ();
 					<div class="col-sm-4">
 						<div class="logo pull-left">
 							<a href="<?php echo __ROOT;?>"><img src="<?php echo __ROOT_IMG . 'home/logo.png'?>" alt="" /></a>
-						</div>
-						<div class="btn-group pull-right">
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									USA
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canada</a></li>
-									<li><a href="#">UK</a></li>
-								</ul>
-							</div>
-							
-							<div class="btn-group">
-								<button type="button" class="btn btn-default dropdown-toggle usa" data-toggle="dropdown">
-									DOLLAR
-									<span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu">
-									<li><a href="#">Canadian Dollar</a></li>
-									<li><a href="#">Pound</a></li>
-								</ul>
-							</div>
 						</div>
 					</div>
 					<div id="__navBar" class="col-sm-8"></div>
@@ -145,7 +120,6 @@ session_start ();
 										<li><a href="blog-single.html">Blog Single</a></li>
                                     </ul>
                                 </li> 
-								<li><a href="404.html">404</a></li>
 								<li><a href="contact-us.html">Contact</a></li>
 							</ul>
 						</div>
@@ -160,7 +134,11 @@ session_start ();
 		</div><!--/header-bottom-->
 	</header><!--/header-->	
 	<?php $registry->router->loader(); ?>
-	<?php include 'includes/navBar.php'; ?>
+	<?php 
+		include 'includes/navBar.php';
+		include 'includes/timeZone.php';
+		include 'includes/countDown.php'; 
+	?>
 	<footer id="footer"><!--Footer-->
 		<div class="footer-top">
 			<div class="container">

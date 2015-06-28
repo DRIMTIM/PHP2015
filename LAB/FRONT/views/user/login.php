@@ -18,10 +18,10 @@
 		</div>
 		<div class="panel-footer">
 			<div class="row">
-				<div class="col-sm-5">
+				<div class="col-sm-3 boton">
 					<button type="submit" class="btn btn-default">Inicio</button>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-3 boton">
 					<a href="<?php echo __ROOT?>">
 						<button type="button" class="btn btn-default">Cancelar</button>
 					</a>
@@ -38,10 +38,10 @@
 		</div>
 		<div class="panel-footer">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4 boton">
 					<button type="submit" class="btn btn-default">Confirmar</button>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-5 boton">
 					<a href="<?php echo __ROOT?>">
 						<button type="button" class="btn btn-default">Cancelar</button>
 					</a>
@@ -64,6 +64,10 @@
 			transitionOut: 'animated bounceOutRight',
 			closeButtonClass: '.animated-close'
 		});
+		if(isMobile()){
+			$("#modal_login").css("margin", "10%");
+			$("#modal_login").css("position", "initial");
+		}
 	});
 </script>
 </html>

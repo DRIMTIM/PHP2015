@@ -6,10 +6,14 @@ abstract class AbstractModel {
    */
   protected $registry;
   protected $_magicProperties;
+  protected $table_name;
           
   function __construct($registry) {
     $this->registry = $registry;
+    $this->onConstruct();
   }
+  
+  abstract function onConstruct();
   
   public function __call($method, $parameters) {
     //for this to be a setSomething or getSomething, the name has to have 
@@ -59,6 +63,10 @@ abstract class AbstractModel {
       return $this->_magicProperties;
   }
   
+  public function getAll(){
+  	$items = $this->registry->db->get($this->table_name);
+  	return $items;
+  }
   
 }
 

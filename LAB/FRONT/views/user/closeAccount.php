@@ -36,10 +36,10 @@
 		</div>
 		<div class="panel-footer">
 			<div class="row">
-				<div class="col-sm-6">
+				<div class="col-sm-4 boton">
 					<button id="botonLogin" type="submit" class="btn btn-default">Dar de Baja</button>
 				</div>
-				<div class="col-sm-6">
+				<div class="col-sm-5 boton">
 					<a href="<?php echo __ROOT?>">
 						<button type="button" class="btn btn-default">Cancelar</button>
 					</a>
@@ -61,6 +61,10 @@
 			transitionOut: 'animated bounceOutRight',
 			closeButtonClass: '.animated-close'
 		});
+		if(isMobile()){
+			$("#modal_closeAccount").css("margin", "10%");
+			$("#modal_closeAccount").css("position", "initial");
+		}
 	});
 </script>
 </html>

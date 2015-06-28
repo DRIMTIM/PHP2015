@@ -2,58 +2,58 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
-				<div id="slider-carousel" class="carousel slide" data-ride="carousel">
-					<ol class="carousel-indicators">
-						<li data-target="#slider-carousel" data-slide-to="0" class="active"></li>
-						<li data-target="#slider-carousel" data-slide-to="1"></li>
-						<li data-target="#slider-carousel" data-slide-to="2"></li>
-					</ol>
-					<div class="carousel-inner">
-						<div class="item active">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>Free E-Commerce Template</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?php echo __ROOT_IMG . 'home/girl1.jpg'?>" class="girl img-responsive" alt="" />
-								<img src="<?php echo __ROOT_IMG . 'home/pricing.png'?>"  class="pricing" alt="" />
-							</div>
+				<?php if(!empty($ofertasTemporales)){?>
+					<div id="slider-carousel" class="carousel slide" data-ride="carousel">
+						<ol class="carousel-indicators">
+						<?php 
+							if(count($ofertasTemporales) > 1){
+								for($cont = 0; $cont < count($ofertasTemporales); $cont++){ 
+									if($cont == 0){?>
+										<li data-target="#slider-carousel" data-slide-to="<?php echo $cont;?>" class="active"></li>
+									<?php }else{?>
+										<li data-target="#slider-carousel" data-slide-to="<?php echo $cont;?>"></li>
+									<?php } ?>
+						<?php } } ?>
+						</ol>
+						<div class="carousel-inner">
+							<?php 
+								$itemActive = true;
+								foreach ($ofertasTemporales as $ofertaTemporal){
+									if($itemActive){ $itemActive = false;?>
+										<div class="item active">
+									<?php } else { ?>
+										<div class="item">
+									<?php } ?>
+									<div class="col-sm-6">
+										<h1><?php echo $ofertaTemporal["titulo"];?></h1>
+										<h2><?php echo $ofertaTemporal["descripcion_corta"];?></h2>
+										<p><?php echo $ofertaTemporal["descripcion"];?></p>
+										<button type="button" class="btn btn-default get">Obtener Ahora</button>
+									</div>
+									<div class="col-sm-6">
+										<img src="<?php echo $ofertaTemporal["imagen"];?>" class="girl img-responsive" alt="" />
+										<div class="imagePrice">
+											<h4>En oferta!</h4>
+											<h5><?php echo Moneda::$SIMBOLOS[$ofertaTemporal["moneda"]] . $ofertaTemporal["precio"];?></h5>
+											<img src="<?php echo __ROOT_IMG . 'home/pricing.png'?>"  class="pricing" alt="" />
+										</div>
+									</div>
+								</div>
+								<?php } ?>
 						</div>
-						<div class="item">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>100% Responsive Design</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?php echo __ROOT_IMG . 'home/girl2.jpg'?>" class="girl img-responsive" alt="" />
-								<img src="<?php echo __ROOT_IMG . 'home/pricing.png'?>"  class="pricing" alt="" />
-							</div>
-						</div>
-						<div class="item">
-							<div class="col-sm-6">
-								<h1><span>E</span>-SHOPPER</h1>
-								<h2>Free Ecommerce Template</h2>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
-								<button type="button" class="btn btn-default get">Get it now</button>
-							</div>
-							<div class="col-sm-6">
-								<img src="<?php echo __ROOT_IMG . 'home/girl3.jpg'?>" class="girl img-responsive" alt="" />
-								<img src="<?php echo __ROOT_IMG . 'home/pricing.png'?>"  class="pricing" alt="" />
-							</div>
-						</div>
+						<?php if(count($ofertasTemporales) > 1){?>
+							<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
+								<i class="fa fa-angle-left"></i>
+							</a>
+							<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
+								<i class="fa fa-angle-right"></i>
+							</a>
+						<?php }?>
 					</div>
-					<a href="#slider-carousel" class="left control-carousel hidden-xs" data-slide="prev">
-						<i class="fa fa-angle-left"></i>
-					</a>
-					<a href="#slider-carousel" class="right control-carousel hidden-xs" data-slide="next">
-						<i class="fa fa-angle-right"></i>
-					</a>
 				</div>
-			</div>
+			<?php } else {?>
+				<h4 class="text-center">No hay ofertas destacadas vigentes en el sistema para el dia de hoy!</h4>
+			<?php }?>
 		</div>
 	</div>
 </section><!--/slider-->
@@ -98,160 +98,13 @@
 		
 		<div class="col-sm-9 padding-right">
 			<div class="features_items"><!--features_items-->
-				<h2 class="title text-center">Features Items</h2>
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-								<div class="productinfo text-center">
-									<img src="<?php echo __ROOT_IMG . 'home/product1.jpg'?>" alt="" />
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-								<div class="product-overlay">
-									<div class="overlay-content">
-										<h2>$56</h2>
-										<p>Easy Polo Black Edition</p>
-										<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-									</div>
-								</div>
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="<?php echo __ROOT_IMG . 'home/product2.jpg'?>" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-							</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-							</div>
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="<?php echo __ROOT_IMG . 'home/product3.jpg'?>" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-							</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-							</div>
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="<?php echo __ROOT_IMG . 'home/product4.jpg'?>" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-							</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-							</div>
-							<img src="<?php echo __ROOT_IMG . 'home/new.png'?>" class="new" alt="" />
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="<?php echo __ROOT_IMG . 'home/product5.jpg'?>" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-							</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-							</div>
-							<img src="<?php echo __ROOT_IMG . 'home/sale.png'?>" class="new" alt="" />
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				<div class="col-sm-4">
-					<div class="product-image-wrapper">
-						<div class="single-products">
-							<div class="productinfo text-center">
-								<img src="<?php echo __ROOT_IMG . 'home/product6.jpg'?>" alt="" />
-								<h2>$56</h2>
-								<p>Easy Polo Black Edition</p>
-								<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-							</div>
-							<div class="product-overlay">
-								<div class="overlay-content">
-									<h2>$56</h2>
-									<p>Easy Polo Black Edition</p>
-									<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
-								</div>
-							</div>
-						</div>
-						<div class="choose">
-							<ul class="nav nav-pills nav-justified">
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to wishlist</a></li>
-								<li><a href="#"><i class="fa fa-plus-square"></i>Add to compare</a></li>
-							</ul>
-						</div>
-					</div>
-				</div>
-				
+				<h2 id="__tituloOfertas" class="title text-center">Ofertas del dia</h2>
+				<script type="text/javascript">
+					$(document).ready(function(){
+						setInterval(refreshOfertasDelDia, parseInt('<?php echo GlobalConstants::$UPDATE_OFERTAS_TIMEOUT;?>'));
+					});
+				</script>
+				<div id="__contenedor_ofertas"><?php include 'product/ofertasTemporales.php';?></div>
 			</div><!--features_items-->
 			
 			<div class="category-tab"><!--category-tab-->

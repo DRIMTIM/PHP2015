@@ -89,10 +89,10 @@
 			</div>
 			<div class="panel-footer">
 				<div class="row">
-					<div class="col-sm-6">
+					<div class="col-sm-3 boton">
 						<button type="submit" class="btn btn-default">Modificar</button>
 					</div>
-					<div class="col-sm-6">
+					<div class="col-sm-3 boton">
 						<a href="<?php echo __ROOT?>">
 							<button type="button" class="btn btn-default">Cancelar</button>
 						</a>
@@ -114,26 +114,24 @@
 			transitionOut: 'animated bounceOutRight',
 			closeButtonClass: '.animated-close'
 		});
-		$("#modal_signin").mCustomScrollbar({
-		    axis:"y",
-		    theme:"dark",
-		    scrollbarPosition:"outside"
-		});
 		passwordModified($("#modificarPassword").val());
 		$( "#fechaNac" ).datepicker({
 			changeYear: true,
 			changeMonth: true,
 			currentText: "Ahora",
-			dateFormat: "dd/mm/yy",
+			dateFormat: "<?php echo GlobalConstants::$jqueryDateFormat; ?>",
 			autoSize: true,
 			firstDay: 1,
-			gotoCurrent: true,
 			dayNames: [ "Domingo", "Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado" ],
 			dayNamesMin: [ "Do", "Lu", "Ma", "Mi", "Ju", "Vi", "Sa" ],
 			dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ],
 			monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" ],
 			monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic" ]	
 		});
+		if(isMobile()){
+			$("#modal_signin").css("margin", "10%");
+			$("#modal_signin").css("position", "initial");
+		}
 	});
 	function passwordModified(inputCheck){
 		if(inputCheck.checked){

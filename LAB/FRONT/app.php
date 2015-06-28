@@ -1,5 +1,7 @@
 <?php 
 
+session_start ();
+
 /**
  * * error reporting on **
  */
@@ -36,8 +38,28 @@ $registry->router->setPath ( __SITE_PATH . '/controllers');
 $registry->template = new template ( $registry );
 
 /**
- * inicio la carga del ambito correspondiente
+ * Defino pattern para ajax
  */
-include 'front.php';
+define('__AJAX_URL_PATTERN', 'ajax');
+
+/**
+ * Obtengo la url del request
+ */
+$url = $_SERVER['REQUEST_URI'];
+
+/**
+ * Evaluo si es un request de ajax o no
+ */
+if(stripos($url, __AJAX_URL_PATTERN) == false){
+	/**
+	 * inicio la carga del template en caso de que no sea un request ajax
+	 */
+	include 'front.php';
+}else{
+	/**
+	 * Inicio la carga de la respuesta del request ajax
+	 */
+	include 'ajaxHandler.php';
+}
 
 ?>

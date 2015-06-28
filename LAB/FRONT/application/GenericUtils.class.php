@@ -17,7 +17,7 @@ class GenericUtils {
 	public function getFormatDateIn($strDate){
 		$strDate = str_replace("/", "-", $strDate);
 		$timeStamp = strtotime($strDate);
-		$newDate = date("Y/m/d", $timeStamp);
+		$newDate = date(GlobalConstants::$sqlDateTimeFormat, $timeStamp);
 		return $newDate;
 	}
 	/**
@@ -31,14 +31,60 @@ class GenericUtils {
 		$edad = $fechaActual->diff($fechaNac);
 		return $edad->y;
 	}
+	
 	/**
-	 * Formatea un String de fecha de salida para transformarlo en un formato valido de la app.
+	 * Verifica si una fecha ya paso.
+	 * @param unknown $strFecha string fecha de ingreso
+	 * @return boolean retorna true si ya paso o false en caso contrario.
+	 */
+	public function isOld($strFecha){
+		$strFecha = str_replace("/", "-", $strFecha);
+		$fechaActual = new DateTime();
+		$fechaActual = $fechaActual->getTimestamp();
+		$fecha = strtotime($strFecha);
+		if($fechaActual >= $fecha){
+			return true;
+		}
+		return false;
+	}
+	/**
+	 * Indica si un intervalo de fechas esta dentro del dia actual desde 00:00:00 a 23:59:59
+	 * @param unknown $fechaInicio
+	 * @param unknown $fechaFin
+	 * @return boolean true si esta dentro del dia o false en caso contrario
+	 */
+	public function isTodayInterval($fechaInicio, $fechaFin){
+		if(empty($fechaInicio) || empty($fechaFin)){
+			return false;
+		}
+		//Obtengo los timestamps de la fecha actual de inicio y de fin, desde las 00:00:00 hasta las 23:59:59
+		$inicioFechaActual = new DateTime();
+		$finFechaActual = new DateTime();
+		$inicioFechaActual->setTime(0, 0, 0);
+		$finFechaActual->setTime(23, 59, 59);
+		$inicioFechaActual = $inicioFechaActual->getTimestamp();
+		$finFechaActual = $finFechaActual->getTimestamp();
+		//Obtengo los timestamps de las fechas ingresadas
+		$fechaInicio = strtotime($fechaInicio);
+		$fechaFin = strtotime($fechaFin);
+		//Comparo
+		if($fechaInicio >= $inicioFechaActual && 
+			$fechaFin > $inicioFechaActual &&
+			$fechaInicio < $fechaFin && 
+			$fechaFin <= $finFechaActual){
+			return true;
+		}
+		return false;
+	} 
+	
+	/**
+	 * Formatea un String de fecha de salida para transformarlo en un formato valido del plugin de jquery.
 	 * @param unknown $strDate Date String de entrada
 	 * @return String formateado a el formato de la app
 	 */
 	public function getFormatDateOut($strDate){
 		$timeStamp = strtotime($strDate);
-		$newDate = date("d/m/Y", $timeStamp);
+		$newDate = date(GlobalConstants::$sqlToJqueryDateFormat, $timeStamp);
 		return $newDate;
 	}
 	/**
@@ -53,5 +99,12 @@ class GenericUtils {
 			return false;
 		}
 		return true;
-	} 
+	}
+	
+	public function roundPriceTwoDecimals($price){
+		if(empty($price)){
+			return false;
+		}
+		return round($price, 2, PHP_ROUND_HALF_UP);
+	}
 }

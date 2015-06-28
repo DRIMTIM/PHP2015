@@ -1,7 +1,6 @@
 <?php
 class UserModel extends AbstractModel{
     
-	protected $table_name = "USUARIOS";
 	protected $id = NULL;
 	protected $nick = NULL;
 	protected $nombre = NULL;
@@ -14,11 +13,11 @@ class UserModel extends AbstractModel{
     protected $edad = NULL;
     protected $isLoggedIn = false;
     protected $modificarPassword = false;
+    protected $timeZone = NULL;
     
-    public function getUsuarios(){
-		$usuarios = $this->registry->db->get($this->table_name);
-		return $usuarios;
-	}	
+	public function onConstruct(){
+    	$this->table_name = "USUARIOS";
+    }	
         
 	public function guardar(){
 		$this->fromArray($_POST);
@@ -30,6 +29,9 @@ class UserModel extends AbstractModel{
 		$data["fechaNac"] = GenericUtils::getInstance()->getFormatDateIn($data["fechaNac"]);
 		//Calculo la edad
 		$data["edad"] = GenericUtils::getInstance()->getYears($data["fechaNac"]);
+		//Obtengo la timezone del cliente para guardarla en la base.
+		$timeZone = $_SESSION[__CLIENT_TIME_ZONE];
+		$data["timeZone"] = $timeZone;
 		return $this->registry->db->insert($this->table_name, $data);
 	}
 	

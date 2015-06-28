@@ -19,7 +19,10 @@ define ( '__ROOT_JS', __ROOT . '/application/public/js/');
  * * Defino la url root de las imagenes **
  */
 define ( '__ROOT_IMG', __ROOT . '/application/public/images/');
-
+/**
+ * Defino constante para la zona horaria del cliente
+ */
+define('__CLIENT_TIME_ZONE', '__CLIENT_TIME_ZONE');
 
 /**
  * * include the controller class **
@@ -46,6 +49,19 @@ include __SITE_PATH . '/application/Router.class.php';
 include __SITE_PATH . '/application/Template.class.php';
 
 include __SITE_PATH . '/application/GenericUtils.class.php';
+
+include __SITE_PATH . '/application/GlobalConstants.class.php';
+
+/**
+ * Cargo las entidades a utilizar
+ */
+if($dirEntities = opendir(__SITE_PATH . "/models/entities")){
+	while(false != ($entity = readdir($dirEntities))){
+		if(stripos("$entity", '.php') != false){
+			include __SITE_PATH . "/models/entities/" . $entity;
+		}
+	}
+}
 
 /**
  * * auto load model classes **

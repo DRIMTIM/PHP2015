@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Servidor: localhost
--- Tiempo de generación: 23-06-2015 a las 22:35:15
+-- Tiempo de generación: 27-06-2015 a las 05:31:09
 -- Versión del servidor: 5.5.43-0+deb8u1
 -- Versión de PHP: 5.6.9-0+deb8u1
 
@@ -104,8 +104,8 @@ CREATE TABLE IF NOT EXISTS `OFERTAS_STOCK` (
 
 CREATE TABLE IF NOT EXISTS `OFERTAS_TEMPORALES` (
   `id` bigint(20) NOT NULL,
-  `fecha_fin` datetime NOT NULL,
-  `fecha_inicio` datetime NOT NULL
+  `fecha_fin` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `fecha_inicio` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -120,11 +120,19 @@ CREATE TABLE IF NOT EXISTS `USUARIOS` (
   `nombre` varchar(100) NOT NULL,
   `apellido` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `fechaNac` date NOT NULL,
+  `fechaNac` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `timeZone` varchar(20) NOT NULL,
   `celular` varchar(20) NOT NULL,
   `password` varchar(100) NOT NULL,
   `edad` int(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
+
+--
+-- Volcado de datos para la tabla `USUARIOS`
+--
+
+INSERT INTO `USUARIOS` (`id`, `nick`, `nombre`, `apellido`, `email`, `fechaNac`, `timeZone`, `celular`, `password`, `edad`) VALUES
+(1, 'JONAF22', 'Jonathan', 'Franco', 'jonaf2103@gmail.com', '1991-03-21 03:00:00', 'GMT -3', '091076361', 'jona', 24);
 
 --
 -- Índices para tablas volcadas
@@ -206,7 +214,7 @@ MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
 -- AUTO_INCREMENT de la tabla `USUARIOS`
 --
 ALTER TABLE `USUARIOS`
-MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT;
+MODIFY `id` bigint(20) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=2;
 --
 -- Restricciones para tablas volcadas
 --
