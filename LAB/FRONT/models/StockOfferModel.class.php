@@ -14,5 +14,18 @@ class StockOfferModel extends OfferModel{
 		return $items;
 	}
 	
+	public function getOfertasValidas(){
+		$ofertasValidas = array();
+		$ofertas = $this->getAll();
+		
+		foreach ($ofertas as $oferta){
+			if($oferta["activa"] == true && $oferta["stock"] > 0){
+				array_push($ofertasValidas, $oferta);
+			}
+		}
+		
+		return $ofertasValidas;
+	}
+	
 }
 ?>

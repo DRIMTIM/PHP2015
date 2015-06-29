@@ -3,9 +3,11 @@
 Class AjaxController extends BaseController {
 
 	private $ofertasTemporalesModel = NULL;
+	private $ofertasStockModel = NULL;
 	
 	public function onConstruct(){
 		$this->ofertasTemporalesModel = new TemporalOfferModel($this->registry);
+		$this->ofertasStockModel = new StockOfferModel($this->registry);
 	}
 	
 	public function index() {
@@ -16,6 +18,16 @@ Class AjaxController extends BaseController {
 		$_SESSION[__CLIENT_TIME_ZONE] = $_POST[__CLIENT_TIME_ZONE];
 		$response = $_SESSION[__CLIENT_TIME_ZONE];
 		echo $this->getOKMessage($response);
+	}
+	
+	public function refreshOfertasRecomendadas(){
+		$ofertasStock = $this->ofertasStockModel->getOfertasValidas();
+		$ofertasTemporales = $this->ofertasTemporalesModel->getOfertasDelDia();
+		$ofertasRecomendadas = array_merge($ofertasStock, $ofertasTemporales);
+		/*** Mezclo las ofertas ***/
+		shuffle($ofertasRecomendadas);
+		$this->registry->template->ofertasRecomendadas = $ofertasRecomendadas;		
+		$this->registry->template->show('product/ofertasRecomendadas');
 	}
 	
 	public function refreshOfertasDelDia(){

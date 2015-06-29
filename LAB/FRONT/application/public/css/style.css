@@ -9,20 +9,16 @@
 .imagePrice { 
 	width: 100%; /* for IE 6 */
 }
-.imagePrice > h4 { 
-	position: absolute; 
-	top: 148pt; 
-	left: 135pt; 
-	width: 100%;
+.imagenPrecio > h4{
 	z-index: 1;
+	top: 70%;
+	right: 50%;
+	font-weight: bold;
 }
-.imagePrice > h5 { 
-   	position: absolute;
-	top: 170pt;
-	left: 145pt;
-	z-index: 1;
-	text-align: center;
-	width: 50pt;
+.imagenPrecio > h5{
 	overflow: hidden;
 	text-overflow: ellipsis;
+	z-index: 1;
+	top: 80%;
+	right: 50%;
 }
