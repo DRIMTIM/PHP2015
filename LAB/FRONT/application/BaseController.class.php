@@ -1,6 +1,6 @@
 <?php
 
-Abstract Class BaseController {
+abstract class BaseController {
 
 /*
  * @registry object
@@ -13,15 +13,12 @@ function __construct($registry) {
 	if($_SESSION[__USER]!== null){
 		$this->usuario = $_SESSION[__USER];
 	}
-	$this->onConstruct();
 }
 
 /**
- * @all controllers must contain an index method
+ * Todos los controladores deben tener por lo menos una accion por defecto.
  */
 abstract function index();
-
-abstract function onConstruct();
 
 function redirect($url, $code = 302)
 {

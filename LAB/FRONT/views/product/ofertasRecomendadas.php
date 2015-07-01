@@ -28,7 +28,7 @@
 											<?php if(!empty($ofertaRecomendada["fecha_inicio"]) && !empty($ofertaRecomendada["fecha_fin"])){?>
 												<p class="timeLimitOferta" data-countdown="<?php echo $ofertaRecomendada["fecha_fin"];?>"></p>
 											<?php } ?>
-											<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Comprar</a>
+											<a href="#" class="btn btn-default add-to-cart" onclick="comprarOferta(<?php echo $ofertaRecomendada["id"];?>);"><i class="fa fa-shopping-cart"></i>Comprar</a>
 										</div>
 									</div>
 								</div>

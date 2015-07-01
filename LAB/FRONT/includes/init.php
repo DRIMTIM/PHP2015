@@ -23,7 +23,10 @@ define ( '__ROOT_IMG', __ROOT . '/application/public/images/');
  * Defino constante para la zona horaria del cliente
  */
 define('__CLIENT_TIME_ZONE', '__CLIENT_TIME_ZONE');
-
+/**
+ * Defino la constante para la compra
+ */
+define('__COMPRA_ACTIVA', '__COMPRA_ACTIVA');
 /**
  * * include the controller class **
  */

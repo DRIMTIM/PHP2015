@@ -89,12 +89,12 @@
 			</div>
 			<div class="panel-footer">
 				<div class="row">
-					<div class="col-sm-3 boton">
-						<button type="submit" class="btn btn-default">Modificar</button>
+					<div class="boton">
+						<button type="submit" class="btn btn-default pull-left">Modificar</button>
 					</div>
-					<div class="col-sm-3 boton">
+					<div class="boton">
 						<a href="<?php echo __ROOT?>">
-							<button type="button" class="btn btn-default">Cancelar</button>
+							<button type="button" class="btn btn-default pull-right">Cancelar</button>
 						</a>
 					</div>
 				</div>
@@ -127,6 +127,11 @@
 			dayNamesShort: [ "Dom", "Lun", "Mar", "Mie", "Jue", "Vie", "Sab" ],
 			monthNames: [ "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Setiembre", "Octubre", "Noviembre", "Diciembre" ],
 			monthNamesShort: [ "Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Set", "Oct", "Nov", "Dic" ]	
+		});
+		$("#modal_signin").mCustomScrollbar({
+		    axis:"y",
+		    theme:"dark",
+		    scrollbarPosition:"outside"
 		});
 		if(isMobile()){
 			$("#modal_signin").css("margin", "10%");

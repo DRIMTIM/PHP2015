@@ -75,10 +75,11 @@ OFERTAS_STOCK(
 CREATE TABLE
 COMPRAS(
 
-    id_compra bigint NOT NULL AUTO_INCREMENT,
+    id bigint NOT NULL AUTO_INCREMENT,
     id_oferta bigint NOT NULL,
     id_usuario bigint NOT NULL,
-    PRIMARY KEY(id_compra),
+    ticket VARCHAR(100),
+    PRIMARY KEY(id),
     FOREIGN KEY (id_oferta) REFERENCES OFERTAS(id) ON DELETE CASCADE,
     FOREIGN KEY (id_usuario) REFERENCES USUARIOS(id) ON DELETE CASCADE
     

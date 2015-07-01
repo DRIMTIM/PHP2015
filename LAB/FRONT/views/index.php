@@ -28,7 +28,7 @@
 										<h1><?php echo $ofertaStock["titulo"];?></h1>
 										<h2><?php echo $ofertaStock["descripcion_corta"];?></h2>
 										<p><?php echo $ofertaStock["descripcion"];?></p>
-										<button type="button" class="btn btn-default get">Obtener Ahora</button>
+										<button type="button" class="btn btn-default get" onclick="comprarOferta('<?php echo $ofertaStock["id"];?>');">Obtener Ahora</button>
 									</div>
 									<div class="col-sm-6">
 										<img src="<?php echo $ofertaStock["imagen"];?>" class="girl img-responsive" alt="" />

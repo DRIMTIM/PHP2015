@@ -1,6 +1,6 @@
 <html>
 <div id="modal_login" class="login-form">
-	<form action="<?php echo __ROOT . "/user/login"?>" method="post" class="panel panel-default">
+	<form id="__formLogin" action="<?php echo __ROOT . "/user/login"?>" method="post" class="panel panel-default">
 		<div class="panel-heading">
 			<h3 class="panel-title">Inicio de Sesión</h3>
 		</div>
@@ -18,12 +18,16 @@
 		</div>
 		<div class="panel-footer">
 			<div class="row">
-				<div class="col-sm-3 boton">
-					<button type="submit" class="btn btn-default">Inicio</button>
+				<div class="boton">
+					<button type="submit" class="btn btn-default pull-left">Inicio</button>
 				</div>
-				<div class="col-sm-3 boton">
+				<div class="boton">
 					<a href="<?php echo __ROOT?>">
-						<button type="button" class="btn btn-default">Cancelar</button>
+						<?php if($_SESSION[__COMPRA_ACTIVA] != null){?>
+							<button type="button" class="btn btn-default pull-right" onclick="cancelarCompra();">Cancelar</button>
+						<?php } else {?>
+							<button type="button" class="btn btn-default pull-right" >Cancelar</button>
+						<?php } ?>
 					</a>
 				</div>
 			</div>
@@ -38,12 +42,16 @@
 		</div>
 		<div class="panel-footer">
 			<div class="row">
-				<div class="col-sm-4 boton">
-					<button type="submit" class="btn btn-default">Confirmar</button>
+				<div class="boton">
+					<button type="submit" class="btn btn-default pull-right">Inicio</button>
 				</div>
-				<div class="col-sm-5 boton">
+				<div class="boton">
 					<a href="<?php echo __ROOT?>">
-						<button type="button" class="btn btn-default">Cancelar</button>
+						<?php if($_SESSION[__COMPRA_ACTIVA] != null){?>
+							<button type="button" class="btn btn-default pull-left" onclick="cancelarCompra();">Cancelar</button>
+						<?php } else {?>
+							<button type="button" class="btn btn-default pull-left" >Cancelar</button>
+						<?php } ?>
 					</a>
 				</div>
 			</div>

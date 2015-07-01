@@ -38,6 +38,9 @@
 <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo __ROOT_IMG . 'ico/apple-touch-icon-114-precomposed.png'?>">
 <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo __ROOT_IMG . 'ico/apple-touch-icon-72-precomposed.png'?>">
 <link rel="apple-touch-icon-precomposed" href="<?php echo __ROOT_IMG . 'ico/apple-touch-icon-57-precomposed.png'?>">
+<script type="text/javascript">
+	var __ROOT = "<?php echo __ROOT; ?>";
+</script>
 <script src="<?php echo __ROOT_JS . 'jquery-2.1.3.js'?>"></script>
 <script src="<?php echo __ROOT_JS . 'bootstrap.js'?>"></script>
 <script src="<?php echo __ROOT_JS . 'jquery.scrollUp.min.js'?>"></script>
@@ -50,6 +53,7 @@
 <script src="<?php echo __ROOT_JS . 'jquery-ui-timepicker-addon.js'?>"></script>
 <script src="<?php echo __ROOT_JS . 'utils.js'?>"></script>
 <script src="<?php echo __ROOT_JS . 'jquery.countdown.js'?>"></script>
+<script src="<?php echo __ROOT_JS . 'ajaxRequesters.js'?>"></script>
 <title>Inicio | DT-Market</title>
 </head>
 <body>	
@@ -104,8 +108,8 @@
 						</div>
 						<div class="mainmenu pull-left">
 							<ul class="nav navbar-nav collapse navbar-collapse">
-								<li><a href="index.html" class="active">Home</a></li>
-								<li><a href="contact-us.html">Contact</a></li>
+								<li><a href="<?php echo __ROOT;?>" class="active">Inicio</a></li>
+								<li><a href="">Contacto</a></li>
 							</ul>
 						</div>
 					</div>

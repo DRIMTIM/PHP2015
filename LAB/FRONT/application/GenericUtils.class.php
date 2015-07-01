@@ -107,4 +107,32 @@ class GenericUtils {
 		}
 		return round($price, 2, PHP_ROUND_HALF_UP);
 	}
+	
+	public function generateUri($id, $tableName){
+		if(!empty($id) && !empty($tableName)){
+			return GlobalConstants::$URI_DRIM . $tableName . GlobalConstants::$ARROBA . $id;
+		}
+		return null;
+	}
+	
+	public function getIdFromUri($uri){
+		if(!empty($uri)){
+			return substr($uri, strpos($uri, GlobalConstants::$ARROBA) + 1);
+		}
+		return null;
+	}
+	
+	public function getTableNameFromUri($uri){
+		if(!empty($uri)){
+			$uriValue = substr($uri, strpos($uri, GlobalConstants::$EQUAL) + 1);
+			$tableName = substr($uriValue, 0, strpos($uriValue, GlobalConstants::$ARROBA));
+			return $tableName;
+		}
+		return null;
+	}
+	
+	public function generarTicket($idCompra){
+		return rand(0, 50000000) . $idCompra . rand(0, 50000000);
+	}
+	
 }

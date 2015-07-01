@@ -1,10 +1,11 @@
 <?php
 
-Class UserController Extends baseController {
+class UserController extends BaseController {
 
 	private $usuarioModel = NULL;
 	
-	public function onConstruct(){
+	public function __construct($registry){
+		parent::__construct($registry);
 		$this->usuarioModel = new UserModel($this->registry);
 	}
 	
@@ -29,7 +30,7 @@ Class UserController Extends baseController {
 			$this->registry->template->errores = $errores;
 			$this->registry->template->show('user/login');
 			return;
-		}		
+		}
 		$nick = $_POST["nick"];
 		$password = $_POST["password"];
 		if(!empty($nick) && empty($password)){
@@ -40,7 +41,11 @@ Class UserController Extends baseController {
 		}else if(!empty($password) && !empty($nick)){
 			$usuario = $this->usuarioModel->obtenerUsuario($nick);
 			$_SESSION[__USER] = $usuario;
-			$this->index();
+			if($_SESSION[__COMPRA_ACTIVA] != null){
+				$this->registry->template->showOther('product/compraConfirm');
+			}else{
+				$this->index();
+			}
 			return;
 		}
 		$this->registry->template->show('user/login');
@@ -48,7 +53,7 @@ Class UserController Extends baseController {
 	
 	public function logout(){
 		session_unset();
-		$this->registry->template->show('index');
+		$this->registry->template->showOther('index');
 	}
 
 	/**
@@ -62,7 +67,7 @@ Class UserController Extends baseController {
 			return;
 		}
 		$this->usuarioModel->guardar();
-		$this->registry->template->show('index');
+		$this->registry->template->showOther('index');
 	}
 	
 	public function modificarDatos($errores){
@@ -87,7 +92,7 @@ Class UserController Extends baseController {
 		}	
 		$this->usuarioModel->borrar($this->usuario["id"]);
 		session_unset();
-		$this->registry->template->show('index');
+		$this->registry->template->showOther('index');
 	}
 	
 }

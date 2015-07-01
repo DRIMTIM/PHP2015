@@ -36,12 +36,12 @@
 		</div>
 		<div class="panel-footer">
 			<div class="row">
-				<div class="col-sm-4 boton">
-					<button id="botonLogin" type="submit" class="btn btn-default">Dar de Baja</button>
+				<div class="boton">
+					<button id="botonLogin" type="submit" class="btn btn-default pull-right">Baja</button>
 				</div>
-				<div class="col-sm-5 boton">
+				<div class="boton">
 					<a href="<?php echo __ROOT?>">
-						<button type="button" class="btn btn-default">Cancelar</button>
+						<button type="button" class="btn btn-default pull-left">Cancelar</button>
 					</a>
 				</div>
 			</div>

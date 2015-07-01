@@ -1,6 +1,6 @@
 <?php
 
-Class Template {
+class Template {
 
 /*
  * @the registry
@@ -45,7 +45,6 @@ function __construct($registry)
  	$this->vars[$index] = $value;
  }
 
-
 function show($name) {
 	
 	if($_SESSION[__USER] !== null){
@@ -66,9 +65,20 @@ function show($name) {
 		$$key = $value;
 	}
 
-	include ($path);               
+	include ($path);
+	
 }
 
+/**
+ * Muestra una view que se encuentra en otro controller al actual, esta funcion se crea ya que al ir a otra view
+ * que el controlador actual no maneja se pierde toda la carga de datos de dicha view, ya que el controlador que maneja la misma
+ * no se instancia por lo que con esta funcion se llama al loader instanciando al controlador correspondiente y se cargan los datos correctamente.
+ * @param unknown $url
+ */
+function showOther($url){
+	$_GET['rt'] = $url;
+	$this->registry->router->loader();
+}
 
 }
 

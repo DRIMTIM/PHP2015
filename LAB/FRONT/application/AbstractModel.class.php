@@ -10,10 +10,7 @@ abstract class AbstractModel {
           
   function __construct($registry) {
     $this->registry = $registry;
-    $this->onConstruct();
   }
-  
-  abstract function onConstruct();
   
   public function __call($method, $parameters) {
     //for this to be a setSomething or getSomething, the name has to have 

@@ -1,12 +1,13 @@
 <?php
 
-Class IndexController Extends baseController {
+class IndexController extends BaseController {
 
 	private $categoriasModel = NULL;
 	private $ofertasStockModel = NULL;
 	private $ofertasTemporalesModel = NULL;
 	
-	public function onConstruct(){
+	public function __construct($registry){
+		parent::__construct($registry);
 		$this->categoriasModel = new CategoryModel($this->registry);
 		$this->ofertasStockModel = new StockOfferModel($this->registry);
 		$this->ofertasTemporalesModel = new TemporalOfferModel($this->registry);

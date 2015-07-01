@@ -5,10 +5,10 @@ class TemporalOfferModel extends OfferModel{
 	protected $fecha_inicio = NULL;
 	protected $fecha_fin = NULL;
 	
-	public function onConstruct(){
-		parent::onConstruct();
+	public function __construct($registry){
+		parent::__construct($registry);
 		$this->super_table_name = $this->table_name;
-		$this->table_name = "OFERTAS_TEMPORALES";
+		$this->table_name = TableNames::OFERTAS_TEMPORALES;
 	}
 	
 	/**
@@ -43,8 +43,9 @@ class TemporalOfferModel extends OfferModel{
 	
 	public function getAll(){
 		$items = $this->registry->db->join($this->super_table_name . " AS O", "O.id = OT.id", "INNER")->get($this->table_name . " AS OT");
-		foreach ($items as $item){
-			$item["precio"] = GenericUtils::getInstance()->roundPriceTwoDecimals($item["precio"]);
+		for ($count = 0; $count < count($items); $count++){
+			$items[$count]["id"] = GenericUtils::getInstance()->generateUri($items[$count]["id"], TableNames::OFERTAS_TEMPORALES);
+			$items[$count]["precio"] = GenericUtils::getInstance()->roundPriceTwoDecimals($items[$count]["precio"]);
 		}
 		return $items;
 	}

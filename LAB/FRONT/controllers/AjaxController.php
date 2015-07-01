@@ -1,11 +1,12 @@
 <?php
 
-Class AjaxController extends BaseController {
+class AjaxController extends BaseController {
 
 	private $ofertasTemporalesModel = NULL;
 	private $ofertasStockModel = NULL;
 	
-	public function onConstruct(){
+	public function __construct($registry){
+		parent::__construct($registry);
 		$this->ofertasTemporalesModel = new TemporalOfferModel($this->registry);
 		$this->ofertasStockModel = new StockOfferModel($this->registry);
 	}
@@ -33,6 +34,20 @@ Class AjaxController extends BaseController {
 	public function refreshOfertasDelDia(){
 		$this->registry->template->ofertasTemporales = $this->ofertasTemporalesModel->getOfertasDelDia();
 		$this->registry->template->show('product/ofertasTemporales');
+	}
+	
+	/**
+	 * Guarda el id de la oferta en sesion para la confirmación de la compra
+	 */
+	public function agregarCompraActiva(){
+		$uriOferta = $_POST["uri_oferta"];
+		$_SESSION[__COMPRA_ACTIVA] = $uriOferta;
+		return $this->getOKMessage($uriOferta);
+	}
+	
+	public function quitarCompraActiva(){
+		$_SESSION[__COMPRA_ACTIVA] = null;
+		return $this->getOKMessage(GlobalConstants::$OK);
 	}
 	
 }

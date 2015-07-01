@@ -22,3 +22,8 @@
 	top: 80%;
 	right: 50%;
 }
+.modalCompra{
+	width: 300pt;
+	height: 500pt;
+	margin-top: -20% !important;
+}

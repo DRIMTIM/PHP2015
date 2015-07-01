@@ -11,11 +11,11 @@ class UserModel extends AbstractModel{
 	protected $password = NULL;
 	protected $passwordConfirm = NULL;
     protected $edad = NULL;
-    protected $isLoggedIn = false;
     protected $modificarPassword = false;
     protected $timeZone = NULL;
     
-	public function onConstruct(){
+	public function __construct($registry){
+		parent::__construct($registry);
     	$this->table_name = "USUARIOS";
     }	
         
@@ -24,7 +24,6 @@ class UserModel extends AbstractModel{
 		$data = $this->toArray();
 		//Quito los campos que no existen en la base
 		unset($data["passwordConfirm"]);
-		unset($data["isLoggedIn"]);
 		//Formateo la fecha de nacimiento al formato de sql
 		$data["fechaNac"] = GenericUtils::getInstance()->getFormatDateIn($data["fechaNac"]);
 		//Calculo la edad
@@ -53,7 +52,6 @@ class UserModel extends AbstractModel{
 		$data = $this->toArray();
 		//Quito los campos que no existen en la base
 		unset($data["passwordConfirm"]);
-		unset($data["isLoggedIn"]);
 		unset($data["modificarPassword"]);
 		//Formateo la fecha de nacimiento al formato de sql
 		$data["fechaNac"] = GenericUtils::getInstance()->getFormatDateIn($data["fechaNac"]);

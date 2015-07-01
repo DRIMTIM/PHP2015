@@ -10,22 +10,6 @@ function isMobile(){
 	if( dispositivo.search(/iphone|ipod|ipad|android/) > -1 ){return true;}
 	return false;
 };
-function refreshOfertasDelDia(){
-	$.ajax({
-		url: "ajax/refreshOfertasDelDia",
-	}).done(function(data) {
-		$("#__contenedor_ofertas").html(data);
-		buildCountDown();
-	});
-};
-function refreshOfertasRecomendadas(){
-	$.ajax({
-		url: "ajax/refreshOfertasRecomendadas",
-	}).done(function(data) {
-		$("#__contenedor_ofertas_recomendadas").html(data);
-		buildCountDown();
-	});
-};
 function buildCountDown(){
 	$('.timeLimitOferta').each(function() {
 		var $this = $(this), finalDate = $(this).data('countdown');
@@ -37,10 +21,6 @@ function buildCountDown(){
 			}
 		})
 	});
-};
-function refreshOfertas(){
-	refreshOfertasDelDia();
-	refreshOfertasRecomendadas();
 };
 function fixPriceImage(anchoVentana, altoVentana){
 	if(anchoVentana && altoVentana){
